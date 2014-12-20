@@ -1,0 +1,27 @@
+{
+  "name": "backbone-google-calendar",
+  "version": "0.0.0",
+  "homepage": "https://github.com/djstroky/backbone-google-calendar",
+  "authors": [
+    "djstroky <djstroky@yahoo.com>"
+  ],
+  "description": "A Collection-Model for Google Calendar using Backbone",
+  "main": "main.js",
+  "keywords": [
+    "Backbone",
+    "Google",
+    "Calendar",
+    "GCal"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.1.2"
+  }
+}
