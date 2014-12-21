@@ -1,0 +1,5 @@
+# Bower
+bower_components
+
+# Eclipse
+.project
