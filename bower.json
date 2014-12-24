@@ -6,7 +6,7 @@
     "djstroky <djstroky@yahoo.com>"
   ],
   "description": "A Collection-Model for Google Calendar using Backbone",
-  "main": "main.js",
+  "main": "backboneGoogleCalendar.js",
   "keywords": [
     "Backbone",
     "Google",
