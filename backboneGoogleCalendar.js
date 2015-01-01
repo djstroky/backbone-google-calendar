@@ -6,12 +6,12 @@ CalendarManager.authorizationScopes = ['https://www.googleapis.com/auth/calendar
 
 CalendarManager.handleAuthenticationResut = function(authResult, callback) {
   if(authResult && !authResult.error) {
-	  this.isAuthorized = true;
+    this.isAuthorized = true;
   } else {
     this.isAuthorized = false;
   }
   if(callback) {
-	  callback(this.isAuthorized, authResult);
+    callback(this.isAuthorized, authResult);
   }
 };
 
@@ -23,7 +23,7 @@ CalendarManager.obtainAuthorization = function(googleApi, clientId, callback){
     scope: this.authorizationScopes, 
     immediate: true
   }, function(result) {
-	  _this.handleAuthenticationResut(result, callback);
+    _this.handleAuthenticationResut(result, callback);
   });
 };
 
@@ -31,46 +31,48 @@ CalendarManager.sync = function(method, model, options){
   switch(method) {
     case 'read':
       if(model.model) {
-    	  //collection read
-        this.gapi.client.load('calendar', 'v3', function() {
-    	    var request = gapi.client.calendar.events.list({
-    	      calendarId: model.calendarId,
+        //collection read
+        this.manager.gapi.client.load('calendar', 'v3', function() {
+          var request = gapi.client.calendar.events.list({
+            calendarId: model.calendarId,
             timeMin: options.timeMin,
-    	      timeMax: options.timeMax
+            timeMax: options.timeMax
           });
-    	          
-    	    request.then(function(resp) {
-    	      options.success(resp);
-    	    }, function(reason) {
-    	      options.failure(reason);
-    	    });
+                
+          request.then(function(resp) {
+            options.success(resp);
+          }, function(reason) {
+            options.failure(reason);
+          });
         });
       } else {
-    	  //model read
+        //model read
       }
-	    break;
+      break;
     case 'create':
       break;
     case 'update':
     case 'patch':
-	    break;
+      break;
     case 'delete':
-	    break;
+      break;
   }
 };
 
 CalendarManager.makeEventModel = function(calendarId) {
   return Backbone.Model.extend({
-	  calendarId: calendarId,
-	  sync: this.sync
+    calendarId: calendarId,
+    manager: this,
+    sync: this.sync
   });
 };
 
 CalendarManager.makeCalendar = function(calendarId) {
   var BackboneGoogleCalendar = Backbone.Collection.extend({
-	  calendarId: calendarId,
-	  model: this.makeEventModel(calendarId),
-	  sync: this.sync
+    calendarId: calendarId,
+    manager: this,
+    model: this.makeEventModel(calendarId),
+    sync: this.sync
   });
   return new BackboneGoogleCalendar();
 };
