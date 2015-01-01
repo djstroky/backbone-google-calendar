@@ -7,9 +7,11 @@ CalendarManager.authorizationScopes = ['https://www.googleapis.com/auth/calendar
 CalendarManager.handleAuthenticationResut = function(authResult, callback) {
   if(authResult && !authResult.error) {
 	  this.isAuthorized = true;
+  } else {
+    this.isAuthorized = false;
   }
   if(callback) {
-	  callback(this.isAuthroized, authResult);
+	  callback(this.isAuthorized, authResult);
   }
 };
 
