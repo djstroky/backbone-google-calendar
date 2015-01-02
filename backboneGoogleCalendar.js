@@ -27,6 +27,19 @@ CalendarManager.obtainAuthorization = function(googleApi, clientId, callback){
   });
 };
 
+
+CalendarManager.collectionParse = function(response, options) {
+  return response.result.items;
+};
+
+CalendarManager.modelParse = function(response, options) {
+  response.startDate = response.start.date;
+  response.startDatetime = response.start.dateTime;
+  response.endDate = response.end.date;
+  response.endDatetime = response.end.dateTime;
+  return response;
+};
+
 CalendarManager.sync = function(method, model, options){
   switch(method) {
     case 'read':
@@ -35,6 +48,9 @@ CalendarManager.sync = function(method, model, options){
         this.manager.gapi.client.load('calendar', 'v3', function() {
           var request = gapi.client.calendar.events.list({
             calendarId: model.calendarId,
+            orderBy: 'starttime',
+            singleEvents: true, 
+            showDeleted: true,
             timeMin: options.timeMin,
             timeMax: options.timeMax
           });
@@ -63,6 +79,7 @@ CalendarManager.makeEventModel = function(calendarId) {
   return Backbone.Model.extend({
     calendarId: calendarId,
     manager: this,
+    parse: this.modelParse,
     sync: this.sync
   });
 };
@@ -72,6 +89,7 @@ CalendarManager.makeCalendar = function(calendarId) {
     calendarId: calendarId,
     manager: this,
     model: this.makeEventModel(calendarId),
+    parse: this.collectionParse,
     sync: this.sync
   });
   return new BackboneGoogleCalendar();
