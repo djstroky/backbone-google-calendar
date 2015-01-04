@@ -75,22 +75,24 @@ CalendarManager.sync = function(method, model, options){
   }
 };
 
-CalendarManager.makeEventModel = function(calendarId) {
-  return Backbone.Model.extend({
+CalendarManager.makeEventModel = function(calendarId, eventModelCfg) {
+  eventModelCfg || (eventModelCfg = {});
+  return Backbone.Model.extend(_.extend({
     calendarId: calendarId,
     manager: this,
     parse: this.modelParse,
     sync: this.sync
-  });
+  }, eventModelCfg));
 };
 
-CalendarManager.makeCalendar = function(calendarId) {
-  var BackboneGoogleCalendar = Backbone.Collection.extend({
+CalendarManager.makeCalendar = function(calendarId, calendarCfg, eventModelCfg) {
+  calendarCfg || (calendarCfg = {});
+  var BackboneGoogleCalendar = Backbone.Collection.extend(_.extend({
     calendarId: calendarId,
     manager: this,
-    model: this.makeEventModel(calendarId),
+    model: this.makeEventModel(calendarId, eventModelCfg),
     parse: this.collectionParse,
     sync: this.sync
-  });
+  }, calendarCfg));
   return new BackboneGoogleCalendar();
 };
