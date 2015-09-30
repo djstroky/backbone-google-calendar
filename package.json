@@ -1,0 +1,25 @@
+{
+  "name": "backbone-google-calendar",
+  "version": "0.0.0",
+  "description": "A Collection-Model for Google Calendar using Backbone.js",
+  "main": "backboneGoogleCalendar.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djstroky/backbone-google-calendar.git"
+  },
+  "keywords": [
+    "backbone",
+    "google",
+    "calendar",
+    "gcal"
+  ],
+  "author": "Evan Siroky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/djstroky/backbone-google-calendar/issues"
+  },
+  "homepage": "https://github.com/djstroky/backbone-google-calendar#readme",
+  "dependencies": {
+    "backbone": "^1.2.3"
+  }
+}

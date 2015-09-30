@@ -3,3 +3,9 @@ bower_components
 
 # Eclipse
 .project
+
+# Node
+node_modules
+
+# Secrets
+tests/credentials.js

@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <script src="jquery-2.1.4.min.js"></script>
+    <script src="../backboneGoogleCalendar.js"></script>
+    <script src="credentials.js"></script>
+    <script src="index.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=gapiReadyCallback"></script>
+    <style type="text/css">
+      pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+        .string { color: green; }
+        .number { color: darkorange; }
+        .boolean { color: blue; }
+        .null { color: magenta; }
+        .key { color: red; }
+    </style>
+  </head>
+  <body>
+    <div id="output"></div>
+    <div id="authorize-div">
+      <span>Authorize access to Google Calendar API</span>
+      <!--Button for the user to click to initiate auth sequence -->
+      <button id="authorize-button">
+        Authorize
+      </button>
+    </div>
+    <div id="authorized-div" style="display: none">
+      <button id="calendar-create-button">
+          Create Calendar
+      </button>
+      <button id="calendar-list-button">
+          List Calendars
+      </button>
+      <button id="calendar-get-button">
+        Get Calendar
+      </button>
+      <button id="event-create-button">
+          Create Event
+      </button>
+      <button id="event-list-button">
+          List Events
+      </button>
+      <button id="event-get-button">
+        Get Event
+      </button>
+    </div>
+  </body>
+</html>
