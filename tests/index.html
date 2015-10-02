@@ -1,6 +1,9 @@
 <html>
   <head>
     <script src="jquery-2.1.4.min.js"></script>
+    <script src="underscore-min.js"></script>
+    <script src="backbone-min.js"></script>
+    <script src="moment.js"></script>
     <script src="../backboneGoogleCalendar.js"></script>
     <script src="credentials.js"></script>
     <script src="index.js"></script>
@@ -33,6 +36,11 @@
       <button id="calendar-get-button">
         Get Calendar
       </button>
+      <br/>
+      <br/>
+      <label for="event-calendar-id-input">Calendar Id to use with events:</label>
+      <input id="event-calendar-id-input" type="text" value="primary" />
+      <br/>
       <button id="event-create-button">
           Create Event
       </button>
